@@ -1,0 +1,365 @@
+
+.home
+  // 共同設定
+  
+  .title-block
+    text-align: center
+    &_title
+      font-size: 3rem
+      margin-bottom: 0.75rem
+    &_subtitle
+      font-size: 1rem
+      font-weight: bold
+      text-transform: uppercase
+      color: 
+      opacity: 0.3
+
+  //各自設定
+  &-banner
+    width:  100%
+    height: 460px
+    overflow: hidden
+  
+  &-category
+    background: #fff
+    padding: 5rem 0
+    .title-block
+      margin-bottom: 5.25rem
+  .category_warp
+    display: flex
+    flex-wrap: wrap
+    margin: 0 -15px
+    .item
+      text-align: center
+      width: 31.3333%
+      margin: 0 1% 6.25rem 1%
+      cursor: pointer
+      &:nth-child(n+3)
+        margin: 0 1% 5.25rem 1%
+      &:hover
+        .item
+          &_text
+            transform: translateY(-15px)
+          &_img
+            img
+              transform: scale(1.1)
+            &::after
+              transform: scale(1.1)
+              background: rgba(255, 255, 255,.1)
+          &_body
+            transform: translateY(15px)
+          &_title
+            color: #3cb696
+          &_subtitle
+            color: #000
+            opacity: .9
+      &_text
+        font-size: 1.375rem
+        color: #477ca8
+        margin-bottom: 1.75rem
+        transition: all .3s
+      &_img
+        width: 250px
+        position: relative
+        margin: 0 auto 1.875rem auto
+        img
+          transition: all .3s
+        &::after
+          position: absolute
+          top: 0
+          left: 0
+          content: ''
+          width: 250px
+          height: 250px
+          transition: all .3s
+          background: rgba(255, 255, 255,.4)
+      &_body
+        transition: all .3s
+      &_title
+        font-size: 2.125rem
+        color: #000
+        opacity: 0.9
+        margin-bottom: 0.75rem
+        transition: all .3s
+      &_subtitle
+        color: #3cb696
+        transition: all .3s
+
+
+  &-vehicle
+    .bg-box
+      height: 100%
+      position: fixed
+      z-index: -10
+      left: 0
+      top: 0
+      width: 100%
+      background-position: center center
+      background-size: cover
+      background-color: #000
+    .bg-item
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-position: center center
+      background-size: cover
+      transition: all 0.3s
+      &:nth-child(1)
+        opacity: 0
+      &:nth-child(2)
+        opacity: 1
+      &:nth-child(3)
+        opacity: 0
+  .vehicle_wrap
+    display: flex
+    height: 540px
+    position: relative
+    &::after
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      content: ''
+      width: 100%
+      background: #000
+      opacity: 0.4
+    .item
+      +flex
+      flex-direction: column
+      width: 33.3333%
+      color: #fff
+      z-index: 2
+      border-right: 1px solid #fff
+      cursor: pointer
+
+      &:hover
+        .item_title
+          transform: translateY(-40px)
+          &::before
+            transform: scale(1)
+            transition-delay: 0.5s
+        .item_subtitle
+          transform: translateY(-40px)
+        .item_button
+          transform: translateY(32px)
+          opacity: 1
+      &_title
+        transform: translateY(30px)
+        font-size: 2.125rem
+        max-width: 20rem
+        text-align: center
+        position: relative
+        transition: all 1s
+        &::before
+          content: ''
+          position: absolute
+          left: 50% 
+          bottom: -34px
+          margin-left: -40px
+          width: 80px
+          height: 1px
+          opacity: 0.4
+          background: #fff
+          transform: scale(0)
+          transition: all .3s
+          transition-delay: 0s
+
+      &_subtitle
+        transform: translateY(30px)
+        margin-bottom: 0.5rem
+        transition: all 1s
+      &_button
+        transform: translateY(45px)
+        transition: all .3s
+        color: #fff
+        border: 1px solid #fff
+        padding: 0.875rem 2.75rem 
+        border-radius: 99px
+        opacity: 0
+        &:hover
+          padding: 0.875rem 4rem
+
+  &-recommend
+    background: #f4f4f4
+    padding: 5rem 0
+    .title-block
+      margin-bottom: 1.875rem
+  .recommend-nav
+    margin-bottom: 1rem
+    .nav
+      &-list
+        display: flex
+      &-list_item
+        width: 25%
+        padding: 1.5rem
+        background: #fff
+        transition: all 0.5s
+        position: relative
+        &:not(:last-child)
+          &::after
+            content: ''
+            position: absolute
+            top: 50%
+            right: 0
+            width: 1px
+            height: 24px
+            margin-top: -12px
+            background: #000
+            opacity: 0.2
+
+    .material-icons
+      transition: all 0.5s
+      font-size: 2rem
+      color: #fff
+    .text
+      font-size: 1.125rem
+    .text-block
+      +flex
+      flex-direction: column
+    .icon-box
+      +flex
+      transition: all 0.5s
+      margin-bottom: 1rem
+      border-radius: 50%
+      width: 65px
+      height: 65px
+
+    .nav-list_item
+      &:nth-child(1)
+        .icon-box
+          background: #3cb696
+        &:hover
+          background: #3cb696
+          .material-icons
+            color: #3cb696
+          .icon-box
+            background: #fff
+          .text
+            color: #fff
+
+      &:nth-child(2)
+        .icon-box
+          background: #718fd9
+        &:hover
+          background: #718fd9
+          .material-icons
+            color: #718fd9
+          .icon-box
+            background: #fff
+          .text
+            color: #fff
+      &:nth-child(3)
+        .icon-box
+          background: #ffcd55
+        &:hover
+          background: #ffcd55
+          .material-icons
+            color: #ffcd55
+          .icon-box
+            background: #fff
+          .text
+            color: #fff
+        
+      &:nth-child(4)
+        .icon-box
+          background: #F0837e
+        &:hover
+          background: #F0837e
+          .material-icons
+            color: #F0837e
+          .icon-box
+            background: #fff
+          .text
+            color: #fff
+      &:nth-child(5)
+        .icon-box
+          background: #00c4bd
+        &:hover
+          background: #00c4bd
+          .material-icons
+            color: #00c4bd
+          .icon-box
+            background: #fff
+          .text
+            color: #fff
+
+  .recommend-container
+    .recommend-list
+      display: flex
+      background: #fff
+    .item
+      width: 20%
+      padding: 4.375rem  1.875rem 3rem 1.875rem
+      background: #fff
+      position: relative
+      transition: all .3s
+      &:hover
+        background: #f8f8f8
+        .item_body
+          transform: translateY(10px)
+        .item_img
+          img
+            transform: scale(1.1)
+      &:not(last-child) 
+        &::after
+          content: ''
+          width: 1px
+          height: 80%
+          right: 0
+          position: absolute
+          top: 50%
+          transform: translateY(-50%)
+          background: #000
+          opacity: 0.2
+      &_mark
+        transition: all .3s
+        z-index: 3
+        position: absolute
+        top: 0
+        left: 1.875rem
+        width: 2.125rem
+        text-align: center
+        background: #ca4747
+        color: #fff
+        font-style: 
+        display: block
+        font-size: 1.3125rem
+        line-height: 2 
+        &::after
+          transition: all .3s
+          position: absolute
+          left: 0
+          bottom: -12px
+          content: ''
+          width: 0
+          height: 0
+          border-style: solid
+          border-width: 12px 17px 0 17px
+          border-color: #ca4747 transparent transparent transparent
+      &_img
+        margin-bottom: 0.875rem
+        img
+          transition: all .3s
+      &_body
+        transition: all .3s
+      &_title
+        font-size: 1.125rem
+        max-height: 2.9rem
+        margin-bottom: 0.5rem
+        overflow: hidden
+        line-height: 1.4 
+      &_text
+        +limitText
+        margin-bottom: 0.5rem
+        color: #808080
+    .price
+      em
+        color: #f00
+        font-weight: 900
+        font-size: 1.375rem
+        font-style: initial
+
+

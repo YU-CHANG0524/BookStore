@@ -1,0 +1,134 @@
+
+.header
+  .z1
+    z-index: 1
+  background: #fff
+  .g-container
+    +flex(space-between)
+    padding-top: 1.375rem
+    padding-bottom: 1.375rem
+    +desk
+      padding: 0.625rem 3rem
+  &_logo
+    +size(5.125rem, 5.125rem)
+    +imgReplaceText
+    background-image: url("~@/assets/images/front/logo/logo.png")
+    background-size: cover
+    background-position: center
+    
+  &_user
+    display: flex
+
+    li
+      list-style: none
+      &:hover
+        .icon
+          color: $info
+        .circle::after
+          transform: scale(1)
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+    &_item
+      position: relative
+      &:not(:last-child)
+        margin-right: 2rem
+      &:nth-of-type(1)
+        .circle
+          background-color: #ff988f
+          &::after
+            background-color: #ff695c
+      &:nth-of-type(2)
+        .circle
+          background-color: #ffcd55
+          &::after
+            background-color: #ffbe22
+      &:nth-of-type(3)
+        .circle
+          background-color: #718fd9
+          &::after
+            background-color: #496fce
+    .icon
+      width: 3.375rem
+      text-align: center
+      transition: all .3s
+    .circle
+      +flex
+      width: 3.375rem
+      height: 3.375rem
+      border-radius: 50%
+      z-index: -1
+      margin-bottom: 0.25rem
+      position: relative
+      &::after
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 0%
+        height: 0%
+        transform: scale(0)
+        border-radius: 50%
+        transition: all .3s
+        z-index: 0
+    .material-icons
+      color: #fff 
+      z-index: 2   
+  &_nav
+    background: #ebebeb
+    &_list
+      +flex
+      >li
+        position: relative
+        transition: all .3s
+        &:not(:last-child)
+          &::before
+            content: ''
+            width: 1px
+            height: 1rem
+            background: #d3d3d3
+            position: absolute
+            top: 50%
+            right: 0
+            transform: translateY(-50%)
+        &:hover
+          background: #4c4948
+          a
+            color: #fff
+
+    .dropdown
+      position: relative
+      &:hover
+        .menu
+          max-height: 1000px
+      a
+        padding: 0.625rem 2.5rem
+      .menu
+        position: absolute
+        bottom: 0
+        left: 0
+        transform: translateY(100%)
+        width: 100%
+        overflow-y: auto
+        overflow: hidden
+        transition: all .5s ease-in-out
+        background: #fff
+        z-index: 999
+        max-height: 0
+        li
+          padding: 0.375rem 1rem
+          border-bottom: 1px solid #d3d3d3
+          cursor: pointer
+          transition: all .3s
+          &:hover
+            background: #ebebeb
+      .router-style
+        a
+          padding: 0
+          border-bottom: 0
+          cursor: pointer
+          transition: all .3s
+          color: #000
+          &:hover
+            background: #ebebeb

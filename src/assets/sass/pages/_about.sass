@@ -1,0 +1,123 @@
+.about
+  background: #f4f4f4
+  padding-bottom: 7.5rem
+  .title-block
+    text-align: center
+    margin-bottom: 2rem
+    &_title
+      font-size: 2.625rem
+      margin-bottom: 0.75rem
+      color: #3cb696
+    &_subtitle
+      font-size: 1rem
+      font-weight: bold
+      text-transform: uppercase
+      color: 
+      opacity: 0.3
+
+  &_description
+    margin-bottom: 5rem
+  .description
+    &-img
+      margin: 0 auto 2.5rem auto
+    &-text
+      color: #5e5c5b
+      margin-bottom: 2.5rem
+      line-height: 2
+      max-width: 42.5rem
+      padding: 0 1.875rem
+      margin: 0 auto 
+
+      p
+        margin-bottom: 2rem
+  
+  &_history
+  
+
+  .timeline_itme-right
+    .timeline_content
+      margin-left: initial
+      margin-right: auto
+      &::before
+        border-color: transparent transparent transparent #FFF 
+        left: initial
+        right: -25px
+        top: 12px
+    .timeline_time
+      left: calc( 50% + 50px )
+  .timeline
+    +flex(flex-start)
+    margin: 0 auto
+    position: relative
+    max-width: 42.5rem
+    flex-direction: column
+    &::after
+      content: ''
+      position: absolute
+      top: 0
+      left: 50%
+      width: 2px
+      height: 100%
+      background: #ccd1d9
+    &_year
+      margin: 0 auto
+      background: #93a03b
+      color: #fff
+      font-size: 0.875rem
+      width: 120px
+      text-align: center
+      padding: 3px 5px
+      z-index: 200
+      border-radius: 0.25rem
+      margin-bottom: 2.5rem
+    &_item
+      position: relative
+      z-index: 10
+      width: 100%
+      margin-bottom: 2.5rem
+    &_time
+      font-size: 0.624rem 
+      position: absolute
+      top: 14px
+      left: calc( 50% - 50px)
+    &_point
+      background: #93a03b
+      position: absolute
+      left: 50%
+      top: 14px
+      width: 22px
+      height: 22px
+      z-index: 300
+      border-radius: 50%
+      border: 4px solid #f4f4f4
+      transform: translateX(-10px)
+    &_content
+      width: 40%
+      padding: 0.625rem  1rem
+      background: #fff
+      border-radius: 0.25rem
+      margin-left: auto
+      position: relative
+      h4
+        font-size: 1.25rem
+      p
+        margin-top: 0.5rem
+        font-size: 0.875rem
+      &::before
+        left: -25px;
+        border-color: transparent #FFF transparent transparent;
+        position: absolute
+        top: 12px
+        width: 0
+        height: 0
+        content: ''
+        border-width: 13px
+        border-style: solid
+    &_end
+      transform: translateY(20px)
+      z-index: 10
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 25px 12.5px 0 12.5px
+      border-color: #93a03b transparent transparent transparent
