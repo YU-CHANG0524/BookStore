@@ -43,6 +43,21 @@ const routes = [
         name: 'cart2',
         component: () => import('../views/front/Cart2.vue'),
       },
+      {
+        path: '/cart3',
+        name: 'cart3',
+        component: () => import('../views/front/Cart3.vue'),
+      },
+      {
+        path: '/cart4',
+        name: 'cart4',
+        component: () => import('../views/front/Cart4.vue'),
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: () => import('../views/front/Order.vue'),
+      },
     ],
   },
   {

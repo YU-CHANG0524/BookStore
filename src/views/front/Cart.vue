@@ -80,14 +80,20 @@
             p 購買總金額
             span.totalPrice 198
               span.text-dark 元
-          .checkout
-            a(href="#", @click.prevent) 前往結帳
+          .checkout-btn
+            a(href="#", @click.prevent="changeRouter('/cart2')") 前往結帳
 
 </template>
 <script>
 
 export default {
+  data() {
+    return {
 
+    };
+  },
+  methods: {
+  },
 };
 </script>
 <style lang="sass">

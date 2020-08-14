@@ -27,6 +27,14 @@ Vue.use(ScrollBar);
 
 Vue.filter('dataFormat', dataFormat);
 Vue.filter('moneySign', moneySign);
+// 註冊為全域函式
+Vue.prototype.changeRouter = (path) => {
+  store.commit('LOADING', true);
+  router.push(path);
+  setTimeout(() => {
+    store.commit('LOADING', false);
+  }, 1500);
+};
 
 new Vue({
   created() {

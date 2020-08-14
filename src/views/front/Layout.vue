@@ -9,6 +9,11 @@ import headerBlock from '../../components/front/Header.vue';
 import footerBlock from '../../components/front/Footer.vue';
 
 export default {
+  data() {
+    return {
+
+    };
+  },
   components: {
     headerBlock,
     footerBlock,

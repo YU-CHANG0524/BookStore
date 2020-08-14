@@ -8,6 +8,11 @@
 import loadingTemplate from './components/common/Loading.vue';
 
 export default {
+  data() {
+    return {
+
+    };
+  },
   components: { loadingTemplate },
 };
 </script>

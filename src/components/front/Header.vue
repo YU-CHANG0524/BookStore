@@ -15,7 +15,7 @@
                 span.material-icons login
               | 後台
           li.header_user_item
-            router-link.icon(to="/")
+            a.icon(href="#", @click.prevent="changeRouter('/order')")
               .circle
                   span.material-icons list_alt
               | 訂單
@@ -57,26 +57,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
 
 export default {
   data() {
     return {
     };
-  },
-  methods: {
-    changeRouter(path) {
-      this.LOADING(true);
-      this.$router.push(path);
-      setTimeout(() => {
-        this.LOADING(false);
-      }, 1500);
-    },
-    ...mapMutations(['LOADING']),
-  },
-  created() {
-  },
-  updated() {
   },
 };
 </script>
