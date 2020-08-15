@@ -5,6 +5,10 @@ import VueAxios from 'vue-axios';
 
 import 'bootstrap';
 
+import VueSweetalert2 from 'vue-sweetalert2';
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 import ScrollBar from '@morioh/v-smooth-scrollbar';
 
 import AOS from 'aos';
@@ -24,6 +28,8 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 
 Vue.use(ScrollBar);
+
+Vue.use(VueSweetalert2);
 
 Vue.filter('dataFormat', dataFormat);
 Vue.filter('moneySign', moneySign);

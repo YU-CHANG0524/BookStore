@@ -54,8 +54,8 @@ const routes = [
         component: () => import('../views/front/Cart4.vue'),
       },
       {
-        path: '/order',
-        name: 'order',
+        path: '/orderList',
+        name: 'orderList',
         component: () => import('../views/front/Order.vue'),
       },
     ],

@@ -15,7 +15,7 @@
                 span.material-icons login
               | 後台
           li.header_user_item
-            a.icon(href="#", @click.prevent="changeRouter('/order')")
+            a.icon(href="#", @click.prevent="changeRouter('/orderList')")
               .circle
                   span.material-icons list_alt
               | 訂單
@@ -23,6 +23,7 @@
             a.icon(href="#", @click.prevent="changeRouter('/cart')")
               .circle
                 span.material-icons add_shopping_cart
+                span.count 0
               | 購物車
     nav.header_nav
       ul.header_nav_list
@@ -57,11 +58,15 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
     };
+  },
+  computed: {
+
   },
 };
 </script>
