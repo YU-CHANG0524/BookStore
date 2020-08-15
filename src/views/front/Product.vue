@@ -30,30 +30,32 @@
           //-         :value="item.title")
           //-   label( :for='item.id') {{item.title}}
       ul.product_list
-        li
+        li(v-for="item in productList" :key="item.id")
           .item
-            a.item_body(href="#", @click.prevent)
+            a.item_body(href="#", @click.prevent="productDetails(item.id)")
               .item_img
-                img(src="https://www.ivy.com.tw/ivy_mall_backend/upload/N50390-56849B.png", alt="")
-              .item_title 123
-              .item_text sadasdasdasdasdadsdasd
+                img( :src="item.imageUrl[0]")
+              .item_title {{ item.title }}
+              .item_text {{ item.content }}
               .price
-                .discount
+                .discount(v-if="item.price !== item.origin_price")
                   | 優惠
-                  em 66
+                  em {{ Math.floor((item.price/item.origin_price)*100) }}
                   | 折,
-                  em 3800
+                  em {{item.price}}
                   | 元
-                .original
+                .original(v-else)
                   | 售價
-                  em 800
+                  em {{item.price}}
                   | 元
             .item_footer
-              a(href="#", @click.prevent).cartAdd 加入購物車
+              a(href="#", @click.prevent="addshopCart(item.id)").cartAdd 加入購物車
 
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -80,6 +82,32 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    productDetails(id) {
+      this.$router.push(`/productList/${id}`);
+    },
+    addshopCart(id) {
+      const purchase = {
+        product: id,
+        quantity: 1,
+      };
+      this.addCart(purchase);
+    },
+    ...mapActions('customer', ['getProducts', 'addCart']),
+  },
+  computed: {
+    ...mapGetters('customer', ['productList', 'alertInfo']),
+  },
+  created() {
+    this.getProducts();
+  },
+  watch: {
+    alertInfo: {
+      handler(val) {
+        this.$swal(val);
+      },
+    },
   },
 };
 </script>
