@@ -5,34 +5,39 @@
       table.table.table-striped
         thead.thead-dark
           tr
-            th.p-3(width="300px") 名稱
-            th.p-3(width="300px") 優惠碼
-            th.p-3 有效期限
-            th.p-3(width="120px") 是否啟用
-            th.p-3(width="150px") 編輯
-      //-   tbody
-      //-     tr(v-for="(item, index) in couponsList")
-      //-       td.lh-25.p-3 {{ item.title }}
-      //-       td.lh-25.p-3 {{ item.code }}
-      //-       td.lh-25.p-3 {{ item.deadline.timestamp|dataFormat }}
-      //-       td.lh-25.d-flex.justify-content-center.align-items-center
-      //-         .c-circle(:class="{active: item.enabled}")
-      //-       td.lh-25.p-3
-      //-         a(href="#", @click.prevent="openModal('edit', item)").py-2.btn.btn-info.mr-2 編輯
-      //-         a(href="#", @click.prevent="openModal('delete', item)").py-2.btn.btn-danger 刪除
+            th.p-3(width="50px") #
+            th.p-3.orderId 訂單編號
+            th.p-3(width="100px") 價格
+            th.p-3(width="120px") 付款方式
+            th.p-3(width="100px") 付款狀態
+            th.p-3(width="100px") 編輯
+        tbody
+          tr(v-for="(item, index) in ordersList")
+            td.lh-25.p-3 {{ index + 1 }}
+            td.lh-25.p-3 {{ item.id }}
+            td.lh-25.p-3.text-danger {{ Math.floor(item.amount)|moneySign }}
+            td.lh-25.p-3 {{ item.payment }}
+            td.lh-25.d-flex.justify-content-center.align-items-center
+              .c-circle(:class="{active: item.paid}")
+            td.lh-25.p-3
+              a(href="#", @click.prevent="openModal('edit', item)").py-2.btn.btn-info.mr-2 編輯
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   methods: {
     ...mapActions('admin', ['getOrders']),
+  },
+  computed: {
+    ...mapGetters('admin', ['ordersList']),
   },
   created() {
     this.getOrders();
   },
 };
 </script>
-<style lang="sass">
-
+<style lang="sass" scoped>
+  .orderId
+    width: 300px
 </style>
