@@ -97,17 +97,10 @@ export default {
     ...mapActions('customer', ['getProducts', 'addCart']),
   },
   computed: {
-    ...mapGetters('customer', ['productList', 'alertInfo']),
+    ...mapGetters('customer', ['productList']),
   },
   created() {
     this.getProducts();
-  },
-  watch: {
-    alertInfo: {
-      handler(val) {
-        this.$swal(val);
-      },
-    },
   },
 };
 </script>

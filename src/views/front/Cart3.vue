@@ -36,34 +36,34 @@
           .block(style="width:20%") 數量
           .block(style="width:15%") 小記
         ul.cart_list_content
-          li.cart_list_content_item
+          li.cart_list_content_item(v-for="item in shopList")
             .productName(style="width:45%")
               .img
-                img(src="https://www.ivy.com.tw/ivy_mall_backend/upload/ER01.png", alt="")
-              .title Reading Comprehension Practice 1 (高效能閱讀練習1)
-            .price(style="width:20%") 123元
+                img(:src="item.product.imageUrl[0]", alt="")
+              .title {{ item.product.title}}
+            .price(style="width:20%") {{ item.product.price }}
             .count(style="width:20%")
-              p 1
-            .dollars(style="width:15%") 456元
+              p.border-0 {{item.quantity}}
+            .dollars(style="width:15%") {{item.product.price * item.quantity}}
         .cart_list_body
           .d-flex.justify-content-between.mb-6
             .name
               p 購買小計
             .totalDollars.text-center(style="width:15%")
-              em 200
+              em {{ total }}
               | 元
           .d-flex.justify-content-between
             .name
               p 優惠碼折抵
             .totalDollars.text-center(style="width:15%")
-              em.text-dark -50
+              em.text-success {{ Math.floor(total * (discount*0.01)) - total }}
               | 元
         .cart_list_footer
           .d-flex.justify-content-between
             .name
               p 購買總金額
             .totalDollars.text-center(style="width:15%")
-              em 200
+              em {{Math.floor(total * (discount*0.01))}}
               |元
       .finallyCheck
         .section-title
@@ -73,40 +73,97 @@
             .name
               p 付款方式
             .msg
-              p 超商取貨付款
+              p {{orderIfon.payment}}
           li
             .name
               p 購買人姓名
             .msg
-              p 張張
+              p {{orderIfon.name}}
           li
             .name
               p 購買人E-MAIL
             .msg
-              p asdasdas@gmail.com
+              p {{orderIfon.email}}
           li
             .name
               p 購買人電話
             .msg
-              p 09126548943
+              p {{orderIfon.tel}}
           li
             .name
               p 購買人地址
             .msg
-              p 彰化縣和美鎮XXX路
+              p {{orderIfon.address}}
+          li
+            .name
+              p 備註
+            .msg
+              p {{orderIfon.message}}
       .btn-group
         .checkout-btn.mr-5.return
           a(href="#", @click.prevent="changeRouter('/cart2')") 上一步
         .checkout-btn.next
-          a(href="#", @click.prevent="changeRouter('/cart4')") 確認購買
+          a(href="#", @click.prevent="sendOrder()") 確認購買
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
-
+      orderIfon: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        payment: '',
+        coupon: '',
+        message: '',
+      },
+      total: 0,
+      discount: 0,
     };
+  },
+  methods: {
+    getSessionLocal() {
+      const vm = this;
+      vm.orderIfon.name = sessionStorage.getItem('name');
+      vm.orderIfon.email = sessionStorage.getItem('email');
+      vm.orderIfon.tel = sessionStorage.getItem('tel');
+      vm.orderIfon.address = sessionStorage.getItem('address');
+      vm.orderIfon.payment = sessionStorage.getItem('payment');
+      vm.orderIfon.coupon = sessionStorage.getItem('coupon');
+      vm.orderIfon.message = sessionStorage.getItem('message');
+      // 折扣
+      vm.discount = sessionStorage.getItem('discount');
+    },
+    totalPrice(data) {
+      const vm = this;
+      data.forEach((item) => {
+        vm.total += (item.product.price * item.quantity);
+      });
+    },
+    sendOrder() {
+      const vm = this;
+      this.addOrder(vm.orderIfon);
+    },
+    ...mapActions('customer', ['getCart', 'addOrder']),
+  },
+  computed: {
+    ...mapGetters('customer', ['shopList']),
+  },
+  watch: {
+    shopList: {
+      handler(val) {
+        this.total = 0;
+        this.totalPrice(val);
+      },
+      deep: true,
+    },
+  },
+  created() {
+    this.getCart();
+    this.getSessionLocal();
   },
 };
 </script>

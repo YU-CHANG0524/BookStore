@@ -5,6 +5,8 @@
     footerBlock
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 import headerBlock from '../../components/front/Header.vue';
 import footerBlock from '../../components/front/Footer.vue';
 
@@ -17,6 +19,18 @@ export default {
   components: {
     headerBlock,
     footerBlock,
+  },
+  methods: {
+  },
+  computed: {
+    ...mapGetters('customer', ['alertInfo']),
+  },
+  watch: {
+    alertInfo: {
+      handler(val) {
+        this.$swal(val);
+      },
+    },
   },
 };
 </script>

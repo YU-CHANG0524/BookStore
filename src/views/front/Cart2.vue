@@ -37,40 +37,61 @@
             .name
               label(for="name") 購買人姓名
             .input
-              input(type="text" ,id="name", required)
+              input(type="text" ,id="name",v-model="customInfo.name" , required)
           li
             .name
               label(for="mail") 聯絡E-MAIL
             .input
-              input(type="email", id="mail", required)
+              input(type="email", id="mail",v-model="customInfo.email" required)
           li
             .name
               label(for="phone") 連絡電話
             .input
-              input(type="tel", id="phone", required)
+              input(type="tel", id="phone",v-model="customInfo.tel" required)
           li
             .name
               label(for="address") 收件地址
             .input
-              input(type="text", id="address", required)
+              input(type="text", id="address",v-model="customInfo.address" required)
       .orderInfo
         .section-title
           p 訂單備註
         .textarea
-          textarea(type="text", placeholder="為避免此欄位文字過長，導致無法完整顯示，請示時換行敘述。")
+          textarea(type="text",
+                    placeholder="為避免此欄位文字過長，導致無法完整顯示，請示時換行敘述。",
+                    v-model="customInfo.message")
       .btn-group
         .checkout-btn.mr-5.return
           a(href="#", @click.prevent="changeRouter('/cart')") 返回購物車
         .checkout-btn.next
-          a(href="#", @click.prevent="changeRouter('/cart3')") 下一步
+          a(href="#", @click.prevent="goNext()") 下一步
 </template>
 <script>
 
 export default {
   data() {
     return {
-
+      customInfo: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        message: '',
+      },
     };
+  },
+  methods: {
+    goNext() {
+      const vm = this;
+      sessionStorage.setItem('name', vm.customInfo.name);
+      sessionStorage.setItem('email', vm.customInfo.email);
+      sessionStorage.setItem('tel', vm.customInfo.tel);
+      sessionStorage.setItem('address', vm.customInfo.address);
+      sessionStorage.setItem('message', vm.customInfo.message);
+      this.$router.push('/cart3');
+    },
+  },
+  computed: {
   },
 };
 </script>

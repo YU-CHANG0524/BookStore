@@ -23,7 +23,7 @@
             a.icon(href="#", @click.prevent="changeRouter('/cart')")
               .circle
                 span.material-icons add_shopping_cart
-                span.count 0
+                span.count(v-if="cartSum !== 0") {{ cartSum }}
               | 購物車
     nav.header_nav
       ul.header_nav_list
@@ -58,15 +58,21 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
     };
   },
+  methods: {
+    ...mapActions('customer', ['getCart']),
+  },
   computed: {
-
+    ...mapGetters('customer', ['cartSum']),
+  },
+  created() {
+    this.getCart();
   },
 };
 </script>

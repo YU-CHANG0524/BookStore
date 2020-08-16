@@ -29,7 +29,12 @@ Vue.use(VueAxios, axios);
 
 Vue.use(ScrollBar);
 
-Vue.use(VueSweetalert2);
+const options = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674',
+};
+
+Vue.use(VueSweetalert2, options);
 
 Vue.filter('dataFormat', dataFormat);
 Vue.filter('moneySign', moneySign);
