@@ -86,22 +86,49 @@ export default {
           context.commit('ALERT_ADD', msg, { root: true });
         });
     },
-    getOrders(context) { // 取得訂單
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/ec/orders`;
+    getOrders(context, payload) { // 取得訂單
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/ec/orders?page=${payload}&paged=10`;
       axios.defaults.headers.common.Authorization = `Bearer ${context.rootState.token.api_token}`;
       axios.get(api)
         .then((response) => {
-          console.log(response.data.data);
+          console.log();
           context.commit('LOADING', false, { root: true });
           context.commit('ORDER_ADD', response.data.data);
+          context.commit('PAGINATION_ADD', response.data.meta.pagination);
         })
         .catch((error) => {
           context.commit('ALERT_MESSAGE', error);
           context.commit('LOADING', false, { root: true });
         });
     },
-    updateOrders() { // 更新訂單
-
+    updateOrders(context, payload) { // 更新訂單付款狀態
+      context.commit('LOADING', true, { root: true });
+      // eslint-disable-next-line prefer-const
+      let api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/ec/orders/${payload.id}/paid`;
+      if (payload.status) { // 如果有id欄位代表 是更新
+        api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/ec/orders/${payload.id}/unpaid`;
+      }
+      axios.patch(api)
+        .then(() => {
+          const msg = {
+            state: true,
+            response: true,
+            message: '已成功修改付款狀態',
+          };
+          context.dispatch('getOrders');
+          $('#changeModal').modal('hide');
+          context.commit('LOADING', false, { root: true });
+          context.commit('ALERT_ADD', msg, { root: true });
+        })
+        .catch(() => {
+          const msg = {
+            state: true,
+            response: false,
+            message: '修改失敗',
+          };
+          context.commit('LOADING', false, { root: true });
+          context.commit('ALERT_ADD', msg, { root: true });
+        });
     },
     getCoupon(context, payload) { // 取得優惠券
       context.commit('LOADING', true, { root: true });

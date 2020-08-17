@@ -101,8 +101,9 @@ export default {
       userPay: '',
       payment: [
         'ATM',
-        '信用卡',
-        '貨到付款',
+        'Credit',
+        'ApplePay',
+        'GooglePay',
       ],
     };
   },
