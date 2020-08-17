@@ -4,10 +4,11 @@
       a(href="#", @click.prevent="changeRouter('/')")
         h1.header_logo
       nav.z1
-        a(href="#", @click.prevent).c_hamburger
-          .line
-          .line
-          .line
+        a(href="#" :class="{'active': rwdNav }", @click.prevent="rwdNav = !rwdNav").c_hamburger
+          .line-box
+            .line
+            .line
+            .line
         ul.header_user
           li.header_user_item
             a.icon(href="#", @click.prevent="changeRouter('/login')")
@@ -25,7 +26,21 @@
                 span.material-icons add_shopping_cart
                 span.count(v-if="cartSum !== 0") {{ cartSum }}
               | 購物車
-    nav.header_nav
+    nav.header_nav(:class="{'active': rwdNav }")
+      .header_nav_rwd
+        ul.rwd-list
+          li.rwd-list_item
+            a.icon(href="#", @click.prevent="changeRouter('/productList')") 產品列表
+          li.rwd-list_item
+            a.icon(href="#", @click.prevent="changeRouter('/login')") 後台管理
+          li.rwd-list_item
+            a.icon(href="#", @click.prevent="changeRouter('/orderList')") 查詢訂單
+          li.rwd-list_item
+            a.icon(href="#", @click.prevent="changeRouter('/cart')") 購物車
+          li.rwd-list_item
+            a.icon(href="#", @click.prevent="changeRouter('/about')") 關於我們
+          li.rwd-list_item
+            a.icon.border-0(href="#", @click.prevent="changeRouter('/active')") 活動消息
       ul.header_nav_list
         li.dropdown
           a(href="#", @click.prevent) 關於我們
@@ -63,6 +78,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   data() {
     return {
+      rwdNav: false,
     };
   },
   methods: {

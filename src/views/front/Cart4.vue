@@ -30,7 +30,7 @@
           span.number 4
           span.text 完成購買
       .success-bg
-        .checkout-btn.mr-5.return
+        .checkout-btn.return
           a(href="#", @click.prevent="changeRouter('/productList')") 繼續逛逛
 
 </template>

@@ -43,12 +43,12 @@
           |共
           em {{ordersList.length}}
           |筆訂單
-    #orderModal.modal.fade(tabindex='-1',
+    #orderModal.orderModal.modal.fade(tabindex='-1',
                             role='dialog',
                             aria-labelledby='exampleModalLabel',
                             aria-hidden='true')
       .modal-dialog.modal-xl(role='document')
-        .modal-content.border-0
+        .modal-content.ofs.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
               span 訂單詳情

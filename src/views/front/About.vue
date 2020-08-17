@@ -73,7 +73,7 @@
             p 以一中街商圈做為中部據點，占地900坪
         .timeline_year.mt-6 2009年
         .timeline_item
-          .timeline_time 5月
+          .timeline_time 五月
           .timeline_point
           .timeline_content
             h4 士林店

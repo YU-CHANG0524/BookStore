@@ -1,5 +1,5 @@
 <template lang="pug">
-  main.cart
+  main.cart.cart2
     section.c-banner
       .c-banner_bg.cart_banner-bg
       h3.c-banner_text 購物專區

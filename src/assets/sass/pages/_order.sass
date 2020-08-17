@@ -1,6 +1,9 @@
 .order
   &_content
     padding: 0 2.5rem 7.5rem 2.5rem
+  .cart_content
+    +rwd(550)
+      padding: 3.75rem 2.5rem !important
   .title-block
     text-align: center
     margin-bottom: 2rem
@@ -8,6 +11,8 @@
       font-size: 2.625rem
       margin-bottom: 0.75rem
       color: #3cb696
+      +pad
+        font-size: 2rem
     &_subtitle
       font-size: 1rem
       font-weight: bold
@@ -27,6 +32,18 @@
       text-align: center
       font-size: 0.875rem
       position: relative
+      &:nth-child(1)
+        +phone
+          display: none
+      &:nth-child(2)
+        +rwd(550)
+          width: 50%
+      &:nth-child(3)
+        +rwd(550)
+          display: none
+      &:nth-child(4)
+        +phone
+          display: none
       &::after
         content: ''
         position: absolute
@@ -48,6 +65,18 @@
         width: 25%
         padding: 14px 10px
         text-align: center
+        &:nth-child(1)
+          +phone
+            display: none
+        &:nth-child(2)
+          +rwd(550)
+            width: 50%
+        &:nth-child(3)
+          +rwd(550)
+            display: none
+        &:nth-child(4)
+          +phone
+            display: none
     .order-total
       padding: 0.5625rem 2.5rem
       font-size: 1.125rem
@@ -58,3 +87,5 @@
         color: #00ada9
         font-size: 26px
         margin: 0 0.25rem
+  .ofs
+    overflow-x: scroll 

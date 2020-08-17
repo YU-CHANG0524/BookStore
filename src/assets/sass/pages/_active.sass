@@ -1,20 +1,35 @@
 .active
+  .c-breadcrumb
+    +pad
+      margin-bottom: 0
   &_content
     margin: 0 auto
     max-width: 1290px 
     padding: 0 2.5rem 7.5rem 2.5rem
+    +pad
+      padding: 2rem 2.5rem
   &_list
     display: flex
+    flex-wrap: wrap
   .item
     width: 30%
     margin: 0 0.5rem
     border: 1px solid rgba(0, 0, 0, 0.18)
-    cursor: pointer 
+    cursor: pointer
+    +pad
+      width: 48%
+      margin: 1% 
+    +rwd(550)
+      width: 100%
+      margin: 0 0 1.5rem 0
     &_body
     &_title
       padding: 2.5rem
       font-size: 1.75rem
       transition: all 0.3s
+      +pad
+        padding: 1.5rem
+        font-size: 1.5rem
     &_img
       position: relative
       padding-bottom: 70%

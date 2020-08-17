@@ -1,5 +1,5 @@
 <template lang="pug">
-  main.cart
+  main.cart.cart3
     section.c-banner
       .c-banner_bg.cart_banner-bg
       h3.c-banner_text 購物專區
@@ -56,14 +56,14 @@
             .name
               p 優惠碼折抵
             .totalDollars.text-center(style="width:15%")
-              em.text-success {{ Math.floor(total * (discount*0.01)) - total }}
+              em.text-success {{ Math.floor(total * (discount*0.01)) - total || 0 }}
               | 元
         .cart_list_footer
           .d-flex.justify-content-between
             .name
               p 購買總金額
             .totalDollars.text-center(style="width:15%")
-              em {{Math.floor(total * (discount*0.01))}}
+              em {{Math.floor(total * ( 0.01 * discount || 1))}}
               |元
       .finallyCheck
         .section-title

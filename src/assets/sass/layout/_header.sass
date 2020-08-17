@@ -9,16 +9,22 @@
     padding-bottom: 1.375rem
     +desk
       padding: 0.625rem 3rem
+    +phone
+
+      padding: 0.425rem 2.5rem
   &_logo
     +size(5.125rem, 5.125rem)
     +imgReplaceText
     background-image: url("~@/assets/images/front/logo/logo.png")
     background-size: cover
     background-position: center
+    +phone
+      +size(4rem, 4rem)
     
   &_user
     display: flex
-
+    +phone
+      display: none
     li
       list-style: none
       &:hover
@@ -88,8 +94,27 @@
       z-index: 2   
   &_nav
     background: #ebebeb
+    +phone
+      position: absolute
+      width: 100%
+      z-index: 10
+      transition: all .5s
+      transform: translateX(-100%)
+    &_rwd
+      display: none
+      padding: 0.625rem 3rem
+      +phone
+        display: block
+      .rwd-list
+        &_item
+          a
+            padding: 1rem
+            text-align: center
+            border-bottom: 1px solid #acacac
     &_list
       +flex
+      +phone
+        display: none
       >li
         position: relative
         transition: all .3s
@@ -143,3 +168,5 @@
           color: #000
           &:hover
             background: #ebebeb
+  .header_nav.active
+    transform: translateX(0px)
