@@ -42,9 +42,6 @@ Vue.filter('moneySign', moneySign);
 Vue.prototype.changeRouter = (path) => {
   store.commit('LOADING', true);
   router.push(path);
-  setTimeout(() => {
-    store.commit('LOADING', false);
-  }, 1500);
 };
 
 new Vue({

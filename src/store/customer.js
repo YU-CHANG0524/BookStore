@@ -28,7 +28,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/product/${payload}`;
       axios.get(api)
         .then((response) => {
-          console.log(response);
           context.commit('PRODUCT_DETAIL_ADD', response.data.data);
         })
         .catch(() => {
@@ -74,7 +73,6 @@ export default {
           context.commit('CART_MSG_ADD', { icon: 'success', title: '成功刪除' });
         })
         .catch(() => {
-          console.log(payload);
           context.commit('CART_MSG_ADD', { icon: 'error', title: '刪除失敗' });
         });
     },
@@ -103,11 +101,20 @@ export default {
     addOrder(context, payload) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/orders`;
       axios.post(api, payload)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           router.push('/cart4');
           context.commit('CART_SUM_SET', 0);
           sessionStorage.clear();
+        })
+        .catch(() => {
+        });
+    },
+    getOrder(context, payload) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/orders`;
+      axios.get(api, payload)
+        .then((response) => {
+          console.log(response);
+          context.commit('ORDER_ADD', response.data.data);
         })
         .catch(() => {
         });
@@ -160,6 +167,9 @@ export default {
     },
     couponInfo(state) {
       return state.searchCoupons;
+    },
+    ordersList(state) {
+      return state.customerOrder;
     },
   },
 };

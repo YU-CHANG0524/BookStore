@@ -91,7 +91,6 @@ export default {
       axios.defaults.headers.common.Authorization = `Bearer ${context.rootState.token.api_token}`;
       axios.get(api)
         .then((response) => {
-          console.log();
           context.commit('LOADING', false, { root: true });
           context.commit('ORDER_ADD', response.data.data);
           context.commit('PAGINATION_ADD', response.data.meta.pagination);
