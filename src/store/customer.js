@@ -113,7 +113,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/orders`;
       axios.get(api, payload)
         .then((response) => {
-          console.log(response);
           context.commit('ORDER_ADD', response.data.data);
         })
         .catch(() => {

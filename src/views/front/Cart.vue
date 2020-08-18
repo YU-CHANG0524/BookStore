@@ -153,10 +153,14 @@ export default {
     },
     goNext() {
       const vm = this;
-      sessionStorage.setItem('payment', vm.userPay);
-      sessionStorage.setItem('coupon', vm.couponInfo.code);
-      this.discountStorageSession();
-      this.$router.push('/cart2');
+      if (vm.userPay) {
+        sessionStorage.setItem('payment', vm.userPay);
+        sessionStorage.setItem('coupon', vm.couponInfo.code || 'default');
+        this.discountStorageSession();
+        this.$router.push('/cart2');
+      } else {
+        this.CART_MSG_ADD({ icon: 'error', title: '請選擇付款方式' });
+      }
     },
     ...mapActions('customer', ['getCart', 'resetCart', 'deleteSingleCart', 'updateCart', 'searchCoupons']),
     ...mapMutations('customer', ['CART_MSG_ADD']),

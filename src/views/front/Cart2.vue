@@ -32,27 +32,50 @@
       .purchaseInfo
         .section-title
           p 購買人與配送資訊
-        ul.way-list
-          li
-            .name
-              label(for="name") 購買人姓名
-            .input
-              input(type="text" ,id="name",v-model="customInfo.name" , required)
-          li
-            .name
-              label(for="mail") 聯絡E-MAIL
-            .input
-              input(type="email", id="mail",v-model="customInfo.email" required)
-          li
-            .name
-              label(for="phone") 連絡電話
-            .input
-              input(type="tel", id="phone",v-model="customInfo.tel" required)
-          li
-            .name
-              label(for="address") 收件地址
-            .input
-              input(type="text", id="address",v-model="customInfo.address" required)
+        ValidationObserver(v-slot="{ invalid }" ref="fromStatus")
+          form( @input="setFormStatus()" )
+            ul.way-list
+              li
+                .name
+                  label(for="name") 購買人姓名
+                .input
+                  ValidationProvider(v-slot="{ errors, classes }", rules="space")
+                    input.form-control(type="text" ,id="name",
+                                      :class="classes" ,
+                                      v-model="customInfo.name" ,
+                                      required)
+                    span.invalid-feedback.inputInfo {{errors[0]}}
+              li
+                .name
+                  label(for="mail") 聯絡E-MAIL
+                .input
+                  ValidationProvider(v-slot="{ errors, classes }", rules="space|email")
+                    input.form-control(type="email", id="mail",
+                                      :class="classes" ,
+                                      v-model="customInfo.email",
+                                      required)
+                    span.invalid-feedback.inputInfo {{errors[0]}}
+              li
+                .name
+                  label(for="phone") 連絡電話
+                .input
+                  ValidationProvider(v-slot="{ errors, classes }", rules="space")
+                    input.form-control(type="tel", id="phone",
+                                      :class="classes" ,
+                                      v-model="customInfo.tel",
+                                      required)
+                    span.invalid-feedback.inputInfo {{errors[0]}}
+              li
+                .name
+                  label(for="address") 收件地址
+                .input
+                  ValidationProvider(v-slot="{ errors, classes }", rules="space")
+                    input.form-control(type="text", id="address",
+                                      :class="classes" ,
+                                      v-model="customInfo.address",
+                                      required)
+                    span.invalid-feedback.inputInfo {{errors[0]}}
+          p {{fromStaus}}
       .orderInfo
         .section-title
           p 訂單備註
@@ -64,13 +87,16 @@
         .checkout-btn.mr-5.return
           a(href="#", @click.prevent="changeRouter('/cart')") 返回購物車
         .checkout-btn.next
+          //- button(type="button", :disabled="invalid" ) 下一步
           a(href="#", @click.prevent="goNext()") 下一步
 </template>
 <script>
+import { mapMutations } from 'vuex';
 
 export default {
   data() {
     return {
+      fromStaus: '',
       customInfo: {
         name: '',
         email: '',
@@ -83,13 +109,24 @@ export default {
   methods: {
     goNext() {
       const vm = this;
-      sessionStorage.setItem('name', vm.customInfo.name);
-      sessionStorage.setItem('email', vm.customInfo.email);
-      sessionStorage.setItem('tel', vm.customInfo.tel);
-      sessionStorage.setItem('address', vm.customInfo.address);
-      sessionStorage.setItem('message', vm.customInfo.message);
-      this.$router.push('/cart3');
+      if (!vm.fromStaus && vm.customInfo.name) {
+        sessionStorage.setItem('name', vm.customInfo.name);
+        sessionStorage.setItem('email', vm.customInfo.email);
+        sessionStorage.setItem('tel', vm.customInfo.tel);
+        sessionStorage.setItem('address', vm.customInfo.address);
+        sessionStorage.setItem('message', vm.customInfo.message);
+        this.$router.push('/cart3');
+      } else {
+        this.CART_MSG_ADD({ icon: 'error', title: '請檢查表單' });
+      }
     },
+    setFormStatus() {
+      const vm = this;
+      setTimeout(() => {
+        vm.fromStaus = vm.$refs.fromStatus.flags.invalid;
+      }, 1000);
+    },
+    ...mapMutations('customer', ['CART_MSG_ADD']),
   },
   computed: {
   },

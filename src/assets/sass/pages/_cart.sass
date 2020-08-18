@@ -238,12 +238,14 @@
         &:hover
           background: #089999
     .input
-      input,select
-        max-width: 200px
+      display: flex
+      align-items: center
+      >span
         width: 100%
+      input,select
+        max-width: 300px
         padding: 0.5rem 1.25rem
         height: 50px
-        border: 1px solid #cacaca
         transition: all .3s
         &:focus
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)
@@ -320,6 +322,13 @@
       +rwd(400)
         max-width: 120px
     .input.input.input
+      position: relative
+      .inputInfo
+        position: absolute
+        bottom: 12px
+        left: 0
+        font-size: 0.875rem
+        line-height: 1
       +phone
         width: calc(100% - 160px)
       +rwd(400)
