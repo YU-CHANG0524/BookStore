@@ -22,30 +22,6 @@ export default new Vuex.Store({
     },
     token: {},
   },
-  mutations: {
-    LOADING(state, payload) { // 畫面loading
-      state.isLoading = payload;
-    },
-    TOKEN_SAVE(state, payload) { // 存入token
-      state.token.api_token = payload;
-    },
-    ICON_STATUS(state, payload) {
-      state.iconLoading = payload;
-    },
-    ALERT_RESET(state) {
-      const data = {
-        state: false,
-        response: '',
-        message: '',
-      };
-      state.alertMessage = data;
-    },
-    ALERT_ADD(state, payload) {
-      state.alertMessage.state = payload.state;
-      state.alertMessage.response = payload.response;
-      state.alertMessage.message = payload.message;
-    },
-  },
   actions: {
     openLoadingState(context) { // 啟動loading
       context.commit('LOADING', true);
@@ -77,6 +53,30 @@ export default new Vuex.Store({
         .catch(() => {
           context.commit('LOADING', false);
         });
+    },
+  },
+  mutations: {
+    LOADING(state, payload) { // 畫面loading
+      state.isLoading = payload;
+    },
+    TOKEN_SAVE(state, payload) { // 存入token
+      state.token.api_token = payload;
+    },
+    ICON_STATUS(state, payload) {
+      state.iconLoading = payload;
+    },
+    ALERT_RESET(state) {
+      const data = {
+        state: false,
+        response: '',
+        message: '',
+      };
+      state.alertMessage = data;
+    },
+    ALERT_ADD(state, payload) {
+      state.alertMessage.state = payload.state;
+      state.alertMessage.response = payload.response;
+      state.alertMessage.message = payload.message;
     },
   },
   getters: {

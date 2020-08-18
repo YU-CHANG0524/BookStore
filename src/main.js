@@ -7,8 +7,6 @@ import 'bootstrap';
 // 前台彈跳視窗
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-// 卷軸
-import ScrollBar from '@morioh/v-smooth-scrollbar';
 // 動畫套件
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -27,13 +25,12 @@ import store from './store';
 import dataFormat from './filter/dataFormat';
 import moneySign from './filter/moneySign';
 // https://blog.csdn.net/dj0379/article/details/52883315 下方套件
-// import 'default-passive-events';
+import 'default-passive-events';
 
 Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
 
-Vue.use(ScrollBar);
 // 彈跳視窗樣式設定
 const options = {
   confirmButtonColor: '#41b882',
@@ -63,8 +60,18 @@ Vue.filter('dataFormat', dataFormat);
 Vue.filter('moneySign', moneySign);
 // 註冊為全域函式
 Vue.prototype.changeRouter = (path) => {
-  store.commit('LOADING', true);
-  router.push(path);
+  if (path === '/cart') {
+    store.commit('LOADING', true);
+    router.push(path).catch(() => {});
+  // eslint-disable-next-line no-constant-condition
+  } else if (path === '/about' || '/active') {
+    store.commit('LOADING', true);
+    setTimeout(() => {
+      router.push(path).catch(() => {});
+      store.commit('LOADING', false);
+    }, 1000);
+  }
+  // router.push(path).catch(() => {});
 };
 // 驗證的元件
 Vue.component('ValidationProvider', ValidationProvider);
@@ -100,8 +107,8 @@ router.beforeEach((to, from, next) => {
       });
   } else { // 如果沒有meta就直接放行
     next();
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000);
   }
 });
