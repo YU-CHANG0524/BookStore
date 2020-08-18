@@ -80,68 +80,35 @@
       .g-container
         .title-block
           h2.title-block_title
-            |書屋
-            span.text-info 老闆
-            |推薦
-          h3.title-block_subtitle Find a book to BookStore
+            |為什麼選擇書屋
+          h3.title-block_subtitle Why choose bookstore
       .g-container
-        .rwd-recommend-nav
-          select
-            option(value="") 投資必備
-            option(value="") 成為工程師
-            option(value="") 學習第二外語
-            option(value="") 了解世界情勢
-            option(value="") 生活必備知識
-        nav.recommend-nav
-          ul.nav-list
-            li.nav-list_item
-              a.text-block(href="#", title="title")
-                span.icon-box
-                  i.material-icons attach_money
-                span.text 投資必備
-            li.nav-list_item
-              a.text-block(href="#", title="title")
-                span.icon-box
-                  i.material-icons android
-                span.text 成為工程師
-            li.nav-list_item
-              a.text-block(href="#", title="title")
-                span.icon-box
-                  i.material-icons g_translate
-                span.text 學習第二外語
-            li.nav-list_item
-              a.text-block(href="#", title="title")
-                span.icon-box
-                  i.material-icons language
-                span.text 了解世界情勢
-            li.nav-list_item
-              a.text-block(href="#", title="title")
-                span.icon-box
-                  i.material-icons emoji_objects
-                span.text 生活必備知識
-        .recommend-container
-          ul.recommend-list
-            li.item
-              span.item_mark 1
-              .item_img
-                img(src="https://www.ivy.com.tw/ivy_mall_backend/upload/TCJK-P-S.png", alt="")
-              .item_body
-                h4.item_title 康健雜誌8月2020第261期
-                p.item_text
-                  |小病不治恐會致命！
-                  |長期忽略症狀，胃食道逆流也會致癌
-                  |胃食道逆流不算大病，早期發現甚至可以透過改變飲食及生活習慣來緩解症狀。
-                  |但若長期忽略不理，也可能變成致命的食道癌！
-                  |透過本期「健康小測驗：你是哪一型胃食道逆流？」，及早發現你的胃好不好。
-                  |哪些NG食物不該吃、NG習慣不該做？專家公認的護胃食物有哪些？
-                  |出現哪些症狀該就醫？如何在癌病變前提早發覺？
-              .item_footer
-                p.price
-                  | 優惠
-                  em 75
-                  | 折，
-                  em 1200
-                  | 元
+        .recommend_wrap
+          .item
+            .item_title
+              h4 書目種類超過
+            .item_img
+              i.fas.fa-book
+            .item_text
+              span 100w
+              p 種以上
+          .item
+            .item_title
+              h4 購書會員超過
+            .item_img
+              i.fas.fa-users
+            .item_text
+              span 300,000
+              p 人以上
+          .item
+            .item_title
+              h4 建立至今已超過
+            .item_img
+              i.fas.fa-hands-helping
+            .item_text
+              span 20
+              p 年以上
+    section.home-elseLink
 
 </template>
 

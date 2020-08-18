@@ -4,7 +4,7 @@
       a(href="#", @click.prevent="changeRouter('/')")
         h1.header_logo
       nav.z1
-        a(href="#" :class="{'active': rwdNav }", @click.prevent="rwdNav = !rwdNav").c_hamburger
+        a(href="#" :class="{'active': rwdNav }", @click.prevent="tabNavhamburger()").c_hamburger
           .line-box
             .line
             .line
@@ -30,17 +30,17 @@
       .header_nav_rwd
         ul.rwd-list
           li.rwd-list_item
-            a.icon(href="#", @click.prevent="changeRouter('/productList')") 產品列表
+            a.icon(href="#", @click.prevent="changeRouter('/productList'); tabNavhamburger(); ") 產品列表
           li.rwd-list_item
-            a.icon(href="#", @click.prevent="changeRouter('/login')") 後台管理
+            a.icon(href="#", @click.prevent="changeRouter('/login'); tabNavhamburger(); ") 後台管理
           li.rwd-list_item
-            a.icon(href="#", @click.prevent="changeRouter('/orderList')") 查詢訂單
+            a.icon(href="#", @click.prevent="changeRouter('/orderList'); tabNavhamburger(); ") 查詢訂單
           li.rwd-list_item
-            a.icon(href="#", @click.prevent="changeRouter('/cart')") 購物車
+            a.icon(href="#", @click.prevent="changeRouter('/cart'); tabNavhamburger(); ") 購物車
           li.rwd-list_item
-            a.icon(href="#", @click.prevent="changeRouter('/about')") 關於我們
+            a.icon(href="#", @click.prevent="changeRouter('/about'); tabNavhamburger(); ") 關於我們
           li.rwd-list_item
-            a.icon.border-0(href="#", @click.prevent="changeRouter('/active')") 活動消息
+            a.icon.border-0(href="#", @click.prevent="changeRouter('/active'); tabNavhamburger(); ") 活動消息
       ul.header_nav_list
         li.dropdown
           a(href="#", @click.prevent) 關於我們
@@ -82,6 +82,10 @@ export default {
     };
   },
   methods: {
+    tabNavhamburger() {
+      const vm = this;
+      vm.rwdNav = !vm.rwdNav;
+    },
     ...mapActions('customer', ['getCart']),
   },
   computed: {
