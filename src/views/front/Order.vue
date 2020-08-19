@@ -8,9 +8,9 @@
         li.home
           router-link.material-icons(to="/") home
         li.c-breadcrumb_item
-          router-link(to="/about") 顧客專區
+          router-link(to="/orderList") 顧客專區
         li.c-breadcrumb_item
-          router-link(to="/about") 訂單查詢
+          router-link(to="/orderList") 訂單查詢
     section.cart_content.g-container
       .title-block
         h2.title-block_title
@@ -39,6 +39,9 @@
                   span.icon-block(v-if="iconLoadingStatus")
                     i.fas.fa-spinner.fa-pulse
                   span(v-else) 詳情
+        pagination.mt-5( :total="paginationData.total_pages",
+                    :current="paginationData.current_page",
+                    @clickEvent="ordersList")
         .order-total
           |共
           em {{ordersList.length}}
@@ -111,12 +114,16 @@
 <script>
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 import $ from 'jquery';
+import pagination from '../../components/common/Pagination.vue';
 
 export default {
   data() {
     return {
       orderDetailsTemplate: {},
     };
+  },
+  components: {
+    pagination,
   },
   methods: {
     orderDetail(item) {
@@ -138,7 +145,7 @@ export default {
   },
   computed: {
     ...mapGetters(['iconLoadingStatus']),
-    ...mapGetters('customer', ['ordersList']),
+    ...mapGetters('customer', ['ordersList', 'paginationData']),
   },
   created() {
     this.getOrder();

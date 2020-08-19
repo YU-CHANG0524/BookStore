@@ -13,11 +13,12 @@ export default {
     shopCart: [],
     cartSum: 0,
     alertMessage: {},
+    pagination: {},
   },
   actions: {
     getProducts(context) { // 取得商品 -ok
       context.commit('LOADING', true, { root: true });
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/products?paged=10`;
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/products?paged=100`;
       axios.get(api)
         .then((response) => {
           context.commit('PRODUCT_ADD', response.data.data);
@@ -138,11 +139,12 @@ export default {
     },
     getOrder(context, payload) {
       context.commit('LOADING', true, { root: true });
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/orders`;
-      axios.get(api, payload)
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/ec/orders?page=${payload}&paged=10`;
+      axios.get(api)
         .then((response) => {
           context.commit('ORDER_ADD', response.data.data);
           context.commit('LOADING', false, { root: true });
+          context.commit('PAGINATION_ADD', response.data.meta.pagination);
         })
         .catch(() => {
           context.commit('CART_MSG_ADD', { icon: 'error', title: '取得失敗' });
@@ -177,6 +179,9 @@ export default {
     COUPON_ADD(state, payload) {
       state.searchCoupons = payload;
     },
+    PAGINATION_ADD(state, payload) {
+      state.pagination = payload;
+    },
   },
   getters: {
     productList(state) {
@@ -199,6 +204,9 @@ export default {
     },
     ordersList(state) {
       return state.customerOrder;
+    },
+    paginationData(state) {
+      return state.pagination;
     },
   },
 };

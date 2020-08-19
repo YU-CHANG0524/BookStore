@@ -63,6 +63,8 @@ Vue.prototype.changeRouter = (path) => {
   if (path === '/cart') {
     store.commit('LOADING', true);
     router.push(path).catch(() => {});
+  } else if (path.indexOf('/productList') === router.currentRoute.path.indexOf('/productList')) {
+    Vue.swal({ icon: 'info', title: '請使用下方的篩選功能' });
   // eslint-disable-next-line no-constant-condition
   } else if (path === '/about' || '/active') {
     store.commit('LOADING', true);
@@ -70,8 +72,9 @@ Vue.prototype.changeRouter = (path) => {
       router.push(path).catch(() => {});
       store.commit('LOADING', false);
     }, 1000);
+  } else {
+    router.push(path).catch(() => {});
   }
-  // router.push(path).catch(() => {});
 };
 // 驗證的元件
 Vue.component('ValidationProvider', ValidationProvider);

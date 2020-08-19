@@ -8,9 +8,9 @@
         li.home
           router-link.material-icons(to="/") home
         li.c-breadcrumb_item
-          router-link(to="/about") 購物專區
+          router-link(to="/cart2") 購物專區
         li.c-breadcrumb_item
-          router-link(to="/about") 購買人與配送資訊
+          router-link(to="/cart2") 購買人與配送資訊
     section.cart_content.g-container
       .title-block
         h2.title-block_title
@@ -75,7 +75,6 @@
                                       v-model="customInfo.address",
                                       required)
                     span.invalid-feedback.inputInfo {{errors[0]}}
-          p {{fromStaus}}
       .orderInfo
         .section-title
           p 訂單備註

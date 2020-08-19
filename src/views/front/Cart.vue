@@ -8,9 +8,9 @@
         li.home
           router-link.material-icons(to="/") home
         li.c-breadcrumb_item
-          router-link(to="/about") 購物專區
+          router-link(to="/cart") 購物專區
         li.c-breadcrumb_item
-          router-link(to="/about") 購物明細
+          router-link(to="/cart") 購物明細
     section.cart_content.g-container
       .title-block
         h2.title-block_title

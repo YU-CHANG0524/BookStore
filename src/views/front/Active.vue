@@ -9,9 +9,9 @@
         li.home
           router-link.material-icons(to="/") home
         li.c-breadcrumb_item
-          router-link(to="/about") 活動消息
+          router-link(to="/active") 活動消息
         li.c-breadcrumb_item
-          router-link(to="/about") 最新活動
+          router-link(to="/active") 最新活動
     section.active_content
       ul.active_list
         li.item(v-for="item in active", :key="item.code")

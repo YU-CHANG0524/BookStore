@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.center(aria-label='...')
+  nav.center(aria-label='...' ,v-if="total !==1")
     ul.pagination
       li.page-item(:class="{'disabled': current === 1 }")
         a.page-link(href='#', @click.prevent="pageSwitch(current-1)") Previous

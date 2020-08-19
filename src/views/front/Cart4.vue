@@ -8,9 +8,9 @@
         li.home
           router-link.material-icons(to="/") home
         li.c-breadcrumb_item
-          router-link(to="/about") 購物專區
+          router-link(to="/cart4") 購物專區
         li.c-breadcrumb_item
-          router-link(to="/about") 完成購買
+          router-link(to="/cart4") 完成購買
     section.cart_content.g-container
       .title-block
         h2.title-block_title
@@ -26,7 +26,7 @@
         .step_item.finished
           span.number 3
           span.text 訂單確認
-        .step_item.active
+        .step_item.finished
           span.number 4
           span.text 完成購買
       .success-bg

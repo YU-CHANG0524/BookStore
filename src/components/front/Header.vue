@@ -48,22 +48,27 @@
             li.router-style
               a(href="#", @click.prevent="changeRouter('/about')") 關於書屋
         li.dropdown
-          a(href="#", @click.prevent) 內容分類
+          a(href="#", @click.prevent) 產品分類
           ul.menu
             li.router-style
-              a(href="#", @click.prevent="changeRouter('/productList')") 財經企管
-            li 電腦資訊
-            li 自然科普
-            li 旅遊相關
-            li 醫療保健
-            li 文學相關
+              a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('全部');") 全部
+            li.router-style
+              a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('中文書');") 中文書
+            li.router-style
+              a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('英文書');") 英文書
+            li.router-style
+              a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('電子書');") 電子書
+            li.router-style
+              a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('雜誌');") 雜誌
         li.dropdown
-          a(href="#", @click.prevent) 刊物種類
+          a(href="#", @click.prevent) 好站分享
           ul.menu
-            li 中文書
-            li 英文書
-            li 電子書
-            li 雜誌
+            li.router-style
+              a(href="https://www.youtube.com/channel/UCEL8871qFEakpqYpwBSjHNA", target="_blank") Alex 宅幹嘛
+            li.router-style
+              a(href="https://gooaye.com/", target="_blank") 股癌
+            li.router-style
+              a(href="https://www.youtube.com/c/%E7%99%BE%E9%9D%88%E6%9E%9CNews/featured", target="_blank") 百靈果
         li.dropdown
           a(href="#", @click.prevent) 活動消息
           ul.menu
@@ -73,7 +78,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -86,6 +91,10 @@ export default {
       const vm = this;
       vm.rwdNav = !vm.rwdNav;
     },
+    setFilterKey(key) {
+      sessionStorage.setItem('filterProdut', key);
+    },
+    ...mapMutations('customer', ['CART_MSG_ADD']),
     ...mapActions('customer', ['getCart']),
   },
   computed: {
