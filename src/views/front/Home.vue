@@ -12,42 +12,42 @@
           h3.title-block_subtitle Find a book to BookStore
       .g-container
         ul.category_warp
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('財經企管');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 了解更多財經知識
             .item_img
               img(src="../../assets/images/front/home/financial.svg", alt="")
             .item_body
               h4.item_title 財經企管
               h4.item_subtitle Financial Enterprise Management
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('電腦資訊');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 想學電腦相關技能嗎?
             .item_img
               img(src="../../assets/images/front/home/computer.svg", alt="")
             .item_body
               h4.item_title 電腦資訊
               h4.item_subtitle Computer Information
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('自然科普');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 探索大自然的奧秘
             .item_img
               img(src="../../assets/images/front/home/natural.svg", alt="")
             .item_body
               h4.item_title 自然科普
               h4.item_subtitle Natural Science
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('旅遊相關');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 生活煩悶嗎? 該出去走走放鬆了
             .item_img
               img(src="../../assets/images/front/home/travel.svg", alt="")
             .item_body
               h4.item_title 旅遊相關
               h4.item_subtitle Travel Related
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('醫療保健');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 讓你生活得更健康
             .item_img
               img(src="../../assets/images/front/home/medical.svg", alt="")
             .item_body
               h4.item_title 醫療保健
               h4.item_subtitle Medical Health
-          li.item
+          li.item( @click.prevent="changeRouter('/productList'); setContentKey('文學相關');",data-aos="flip-left", data-aos-duration="1000")
             p.item_text 接受文學的薰陶
             .item_img
               img(src="../../assets/images/front/home/literature.svg", alt="")
@@ -67,15 +67,15 @@
         .item( @mouseover="tabBackground('bg1')")
           h4.item_subtitle 任何語言應有盡有
           h3.item_title 想要閱讀外文刊物嗎?
-          a.item_button(href="#") more
+          a.item_button(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('英文書');") more
         .item( @mouseover="tabBackground('bg2')")
           h4.item_subtitle 電子書好方便
           h3.item_title 有使用電子閱讀器的習慣嗎?
-          a.item_button(href="#") more
+          a.item_button(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('電子書');") more
         .item( @mouseover="tabBackground('bg3')")
           h4.item_subtitle 各種雜誌任你挑
           h3.item_title 喜歡看任何期刊雜誌嗎?
-          a.item_button(href="#") more
+          a.item_button(href="#", @click.prevent="changeRouter('/productList'); setFilterKey('雜誌');") more
     section.home-recommend
       .g-container
         .title-block
@@ -84,7 +84,7 @@
           h3.title-block_subtitle Why choose bookstore
       .g-container
         .recommend_wrap
-          .item
+          .item(data-aos="flip-up", data-aos-duration="1000", data-aos-delay="800")
             .item_title
               h4 書目種類超過
             .item_img
@@ -92,7 +92,7 @@
             .item_text
               span 100w
               p 種以上
-          .item
+          .item(data-aos="flip-up", data-aos-duration="1000", data-aos-delay="800")
             .item_title
               h4 購書會員超過
             .item_img
@@ -100,7 +100,7 @@
             .item_text
               span 300,000
               p 人以上
-          .item
+          .item(data-aos="flip-up", data-aos-duration="1000", data-aos-delay="800")
             .item_title
               h4 建立至今已超過
             .item_img
@@ -126,6 +126,14 @@ export default {
     tabBackground(num) {
       const vm = this;
       vm.bgNumber = num;
+    },
+    setFilterKey(key) {
+      sessionStorage.setItem('filterProdut', key);
+      sessionStorage.setItem('filterContent', '全部');
+    },
+    setContentKey(key) {
+      sessionStorage.setItem('filterProdut', '全部');
+      sessionStorage.setItem('filterContent', key);
     },
   },
   mounted() {

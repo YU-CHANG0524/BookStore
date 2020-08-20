@@ -8,15 +8,31 @@
   .sidebar
     width: 20%
     margin-right: 2%
+    +pad
+      width: 100%
+      margin-right: 0
+      margin-bottom: 2rem
+    +rwd(550)
+      margin-top: 2rem
     &_box
       border-bottom: 1px solid #fff
       padding: 1.5rem 
       background: #ebebeb
+      +pad
+        flex-wrap: wrap
+        display: flex
     .title
+      width: 100%
       font-size: 1.125rem
       font-weight: bold
       margin-bottom: 1rem
   .checkbox-group
+    +pad
+      width: 20%
+    +rwd(660)
+      width: 30%
+    +rwd(480)
+      width: 50%
     label
       margin-left: 0.5rem
 
@@ -25,8 +41,18 @@
     // border: 1px solid #f00
     display: flex
     flex-wrap: wrap
+    +pad
+      width: 100%
     li
       width: 33.3333%
+      +desk
+        width: 50%
+      +pad
+        width: 33.3333%
+      +phone
+        width: 50%
+      +rwd(550)
+        width: 100%
   .item
     
     margin: 0 5px 1.25rem 5px
@@ -64,6 +90,10 @@
     &_img
       height: 250px
       overflow: hidden
+      +pad
+        height: 220px
+      +rwd(800)
+        height: 180px
     &_title
       font-size: 1.125rem
       margin: 1.25rem 0 0.5rem 0

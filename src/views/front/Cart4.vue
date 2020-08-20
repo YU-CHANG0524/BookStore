@@ -31,7 +31,7 @@
           span.text 完成購買
       .success-bg
         .checkout-btn.return
-          a(href="#", @click.prevent="changeRouter('/productList')") 繼續逛逛
+          a(href="#", @click.prevent="changeRouter('/productList'); setFilterKey();") 繼續逛逛
 
 </template>
 <script>
@@ -41,6 +41,12 @@ export default {
     return {
 
     };
+  },
+  methods: {
+    setFilterKey() {
+      sessionStorage.setItem('filterProdut', '全部');
+      sessionStorage.setItem('filterContent', '全部');
+    },
   },
 };
 </script>

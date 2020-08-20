@@ -61,6 +61,10 @@ export default {
     z-index: 100
     border-radius: 50%
     transition: all .3s
+    @media only screen and (max-width: 767px)
+      width: 50px
+      height: 50px
+      font-size: 1.5rem
     &:hover
       color: #fff
       transform: translateY(-10px)

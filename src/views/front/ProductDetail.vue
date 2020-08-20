@@ -19,15 +19,17 @@
           img( :src="productDetail.imageUrl[0]", alt="")
         .content_main_information
           .title {{productDetail.title}}
-          .price
-            |定價
+          .price(v-if=" productDetail.price !== productDetail.origin_price")
+            |定價 :
             del {{productDetail.origin_price}}
             |元，
             span.discount.t-red {{Math.floor((productDetail.price/productDetail.origin_price)*100)}}
             |折
             em.dollars.t-red {{productDetail.price}}
             | 元
-
+          .price(v-else)
+            | 售價 :
+            em.dollars.t-red.ml-3 {{productDetail.price}}
           ul.book-info
             li
               span 作者：

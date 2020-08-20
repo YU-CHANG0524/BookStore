@@ -93,6 +93,7 @@ export default {
     },
     setFilterKey(key) {
       sessionStorage.setItem('filterProdut', key);
+      sessionStorage.setItem('filterContent', '全部');
     },
     ...mapMutations('customer', ['CART_MSG_ADD']),
     ...mapActions('customer', ['getCart']),

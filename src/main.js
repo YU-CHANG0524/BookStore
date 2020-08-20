@@ -25,7 +25,7 @@ import store from './store';
 import dataFormat from './filter/dataFormat';
 import moneySign from './filter/moneySign';
 // https://blog.csdn.net/dj0379/article/details/52883315 下方套件
-import 'default-passive-events';
+// import 'default-passive-events';
 
 Vue.config.productionTip = false;
 
@@ -63,8 +63,6 @@ Vue.prototype.changeRouter = (path) => {
   if (path === '/cart') {
     store.commit('LOADING', true);
     router.push(path).catch(() => {});
-  } else if (path.indexOf('/productList') === router.currentRoute.path.indexOf('/productList')) {
-    Vue.swal({ icon: 'info', title: '請使用下方的篩選功能' });
   // eslint-disable-next-line no-constant-condition
   } else if (path === '/about' || '/active') {
     store.commit('LOADING', true);

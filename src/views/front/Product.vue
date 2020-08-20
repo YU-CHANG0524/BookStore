@@ -24,12 +24,13 @@
         .sidebar_box
           h5.title 內容分類
 
-          //- .checkbox-group(v-for="item in bookFrom" :key="item.id")
-          //-   input(type="checkbox",
-          //-         :id="item.id",
-          //-         :name="item.title",
-          //-         :value="item.title")
-          //-   label( :for='item.id') {{item.title}}
+          .checkbox-group(v-for="item in contentList" :key="item.id")
+            input(type="checkbox",
+                  :id="item.id",
+                  :name="item.title",
+                  :value="item.title"
+                  v-model="selectContent")
+            label( :for='item.id') {{item.title}}
 
       ul.product_list
         li(v-for="item in filterData[pagination]", :key="item.id")
@@ -87,7 +88,38 @@ export default {
           id: 'magazine',
         },
       ],
+      contentList: [
+        {
+          title: '全部',
+          id: 'content0',
+        },
+        {
+          title: '醫療保健',
+          id: 'content1',
+        },
+        {
+          title: '自然科普',
+          id: 'content2',
+        },
+        {
+          title: '財經企管',
+          id: 'content3',
+        },
+        {
+          title: '旅遊相關',
+          id: 'content4',
+        },
+        {
+          title: '文學相關',
+          id: 'content5',
+        },
+        {
+          title: '電腦資訊',
+          id: 'content6',
+        },
+      ],
       selectCategory: '全部',
+      selectContent: ['全部'],
       allProducts: [],
       filterData: [],
       pagination: 0,
@@ -133,9 +165,27 @@ export default {
       }
       return newArray;
     },
+    filiterContentClass(data) {
+      const vm = this;
+      const newArray = [];
+      if (vm.selectContent.indexOf('全部') !== -1) {
+        data.forEach((item) => {
+          newArray.push(item);
+        });
+      } else {
+        data.forEach((item) => {
+          if (vm.selectContent.indexOf(item.options.subcategories) !== -1) {
+            newArray.push(item);
+          }
+        });
+      }
+      return newArray;
+    },
     getFilterKey() {
       const vm = this;
       vm.selectCategory = sessionStorage.getItem('filterProdut');
+      vm.selectContent = [sessionStorage.getItem('filterContent')];
+      sessionStorage.clear();
     },
     addshopCart(id) {
       const purchase = {
@@ -157,13 +207,14 @@ export default {
     productList: {
       handler(val) {
         this.allProducts = val;
-        this.filterData = this.splitProducts(this.filterProduct(this.selectCategory));
+        this.filterData = this.splitProducts(this.filiterContentClass(this.filterProduct(this.selectCategory)));
       },
     },
     selectCategory: {
       handler() {
         const vm = this;
         vm.pagination = 0;
+        vm.selectContent = ['全部'];
         if (this.selectCategory === '全部') {
           this.filterData = this.splitProducts(this.filterProduct('全部'));
         } else {
@@ -172,11 +223,24 @@ export default {
       },
       deep: true,
     },
+    selectContent: {
+      handler() {
+        const vm = this;
+        vm.pagination = 0;
+        if (this.selectCategory === '全部') {
+          this.filterData = this.splitProducts(this.filiterContentClass(this.filterProduct('全部')));
+        } else {
+          this.filterData = this.splitProducts(this.filiterContentClass(this.filterProduct()));
+        }
+      },
+    },
   },
   // 監聽 selectCategory 並觸發篩選資料事件
   created() {
     this.getProducts();
-    this.getFilterKey();
+    setTimeout(() => {
+      this.getFilterKey();
+    });
   },
 };
 </script>

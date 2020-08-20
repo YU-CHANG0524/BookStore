@@ -3,20 +3,35 @@
   .t-red
     color: #f00
   &_content
-    max-width: 1200px
+    max-width: 1300px
     margin: 0 auto
-
+    padding: 0 2.5rem
+    +rwd(550)
+      margin-top: 2rem
   .content_main
     display: flex
     padding-bottom: 2rem
     border-bottom: 2px solid rgba(0, 0, 0, 0.08)
+    +rwd(700)
+      flex-wrap: wrap
     &_img
+      +flex
       width: 38%
       padding: 2.5rem
       border: 1px solid rgba(0, 0, 0, 0.08)
       margin-right: 2%
+      +pad
+        width: 50%
+        padding: 1rem
+      +rwd(700)
+        width: 100%
+        margin-bottom: 1rem
     &_information
       width: 60%
+      +pad
+        width: 50%
+      +rwd(700)
+        width: 100%
       em
         font-style: initial
       .title
@@ -102,10 +117,14 @@
       max-width: 960px
       margin: 0 auto
       margin-top: 2rem
+      +rwd(550)
+        flex-direction: column
       &_row
         width: 50%
         border: 1px solid #ddd
         display: flex
+        +rwd(550)
+          width: 100%        
       .th
         width: 30%
         text-align: center
