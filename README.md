@@ -3,7 +3,7 @@
 
 > 這是一份 Vue CLI 3 前端電商練習。
 
-![島津燒肉首頁](https://imgur.com/kNg4GDD)
+![書屋首頁](https://imgur.com/kNg4GDD)
 
 ## DEMO
 
@@ -53,7 +53,7 @@
 
 首頁畫面
 
-![首頁畫面](https://imgur.com/kNg4GDD)
+![首頁畫面](https://i.imgur.com/kNg4GDD.png)
 
 點擊商品類別區塊，會跳到產品列表，並顯示該類別產品列表
 
